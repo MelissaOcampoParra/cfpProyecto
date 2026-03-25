@@ -1,0 +1,9 @@
+# Compilados
+build/
+*.class
+*.jar
+
+# NetBeans / IDE
+nbproject/private/
+nbbuild/
+dist/
