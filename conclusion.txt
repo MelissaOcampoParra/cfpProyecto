@@ -1,0 +1,73 @@
+================================================================================
+                    REFLEXIÓN FINAL DEL PROYECTO
+                           (cfpProyecto)
+================================================================================
+
+
+--------------------------------------------------------------------------------
+  1. ¿QUÉ APRENDÍ DURANTE EL DESARROLLO DEL PROYECTO?
+--------------------------------------------------------------------------------
+
+  Durante el desarrollo del proyecto se adquirieron competencias relacionadas
+  con el diseño de un flujo de procesamiento en dos etapas. En la primera
+  etapa, se implementó la generación de archivos de texto plano (CSV) con datos
+  pseudoaleatorios mediante la clase GenerateInfoFiles. En la segunda etapa,
+  dichos archivos fueron procesados desde una clase con método main, con el
+  propósito de consolidar la información de ventas y generar reportes
+  organizados.
+
+  Adicionalmente, se fortalecieron habilidades en el manejo de entrada y salida
+  de datos en Java, incluyendo la lectura secuencial de archivos, la escritura
+  mediante PrintWriter y el uso adecuado de la codificación UTF-8. Asimismo,
+  se consolidó el uso de estructuras de datos como listas y mapas para la
+  organización eficiente de la información de productos y vendedores, así como
+  la gestión de rutas y archivos dentro del entorno del proyecto.
+
+  De igual forma, se reforzó el uso de herramientas de control de versiones
+  como Git y GitHub, permitiendo una adecuada gestión del código fuente y la
+  documentación formal de los avances del proyecto.
+
+
+--------------------------------------------------------------------------------
+  2. POSIBLES APLICACIONES PROFESIONALES DE LO PRACTICADO
+--------------------------------------------------------------------------------
+
+  Las competencias desarrolladas durante el proyecto tienen aplicación en
+  diversos contextos profesionales dentro del desarrollo de software y el
+  análisis de datos. Entre ellas se destacan la generación de datos de prueba,
+  la integración de información mediante archivos (procesos ETL de carácter
+  ligero) y la elaboración de reportes orientados a la toma de decisiones, como
+  rankings de vendedores o identificación de productos con mayor demanda.
+
+  En entornos profesionales, este tipo de soluciones es común en procesos
+  como la importación de catálogos, la conciliación de información
+  transaccional, las auditorías de datos y la construcción de tableros que
+  consumen información proveniente de sistemas externos. Asimismo, se
+  evidencian buenas prácticas en el uso de sistemas de control de versiones en
+  contextos colaborativos.
+
+
+--------------------------------------------------------------------------------
+  3. DIFICULTADES ENCONTRADAS DURANTE EL DESARROLLO
+--------------------------------------------------------------------------------
+
+  Durante el desarrollo del proyecto se presentaron diversas dificultades. Una
+  de las principales consistió en garantizar la consistencia en el formato de
+  los archivos CSV entre la generación de datos y su posterior procesamiento.
+  Igualmente, fue necesario asegurar la correcta secuencia de ejecución de los
+  componentes del sistema, iniciando con la clase GenerateInfoFiles y
+  posteriormente la clase principal (main).
+
+  Adicionalmente, se identificaron inconvenientes asociados a la ausencia de
+  archivos o inconsistencias en las rutas de trabajo, lo que ocasionó errores
+  durante la ejecución del programa. En las etapas iniciales, también se
+  presentaron dificultades relacionadas con el reconocimiento del proyecto por
+  parte del entorno de desarrollo (IDE), situación que fue resuelta mediante una
+  adecuada configuración del proyecto, incluyendo el uso de Maven y la correcta
+  definición del archivo pom.xml.
+
+  Finalmente, la estandarización de nombres de clases y archivos conforme a los
+  lineamientos de la rúbrica, así como la organización del repositorio para
+  facilitar el trabajo colaborativo y la revisión por parte del docente,
+  demandó un alto nivel de atención al detalle.
+
