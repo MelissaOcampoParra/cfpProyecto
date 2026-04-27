@@ -15,7 +15,10 @@ public class GenerateInfoFiles {
             createProductsFile(PRODUCTOS_NOMBRES.length);
             createSalesManInfoFile(3); // Crear 3 vendedores
             System.out.println("¡Archivos generados exitosamente!");
-        } catch (Exception e) { System.err.println("ERROR: " + e.getMessage()); }
+        } catch (Exception e) {
+            String m = e.getMessage();
+            System.err.println("ERROR: no se pudieron generar los archivos. " + ((m != null && !m.isEmpty()) ? m : e.toString()));
+        }
     }
 
     public static void createProductsFile(int productsCount) throws Exception {

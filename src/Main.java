@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,17 +16,19 @@ class Vendedor {
     public String getNumDoc() { return numDoc; }
 }
 
-public class Main {
+public class main {
     public static void main(String[] args) {
         try {
-            System.out.println("Iniciando...");
+            System.out.println("Iniciando procesamiento de reportes...");
 
             Map<String, Producto> mapaProductos = cargarDatos("productos.csv", linea -> {
-                String[] d = linea.split(";"); return new Producto(d[0], d[1], Double.parseDouble(d[2]));
+                String[] d = linea.split(";");
+                return new Producto(d[0], d[1], Double.parseDouble(d[2]));
             }, Producto::getId);
 
             Map<String, Vendedor> mapaVendedores = cargarDatos("vendedores.csv", linea -> {
-                 String[] d = linea.split(";"); return new Vendedor(d[0], d[1], d[2], d[3]);
+                String[] d = linea.split(";");
+                return new Vendedor(d[0], d[1], d[2], d[3]);
             }, Vendedor::getNumDoc);
 
             Files.walk(Paths.get("."))
@@ -34,8 +37,15 @@ public class Main {
 
             generarReportes(mapaVendedores, mapaProductos);
 
-            System.out.println("¡Reportes generados!");
-        } catch (Exception e) { System.err.println("ERROR: " + e.getMessage()); }
+            System.out.println("¡Reportes generados exitosamente!");
+        } catch (Exception e) {
+            System.err.println("ERROR: no se pudieron generar los reportes. " + mensajeExcepcion(e));
+        }
+    }
+
+    private static String mensajeExcepcion(Exception e) {
+        String m = e.getMessage();
+        return (m != null && !m.isEmpty()) ? m : e.toString();
     }
 
     private static <T> Map<String, T> cargarDatos(String archivo, java.util.function.Function<String, T> constructor, java.util.function.Function<T, String> getKey) throws IOException {
@@ -58,24 +68,26 @@ public class Main {
                     producto.cantidadVendida += cantidad;
                 }
             }
-        } catch (Exception e) { System.err.println("ADVERTENCIA: " + archivo.getFileName()); }
+        } catch (Exception e) {
+            System.err.println("ADVERTENCIA al leer " + archivo.getFileName() + ": " + mensajeExcepcion(e));
+        }
     }
 
     private static void generarReportes(Map<String, Vendedor> mapaVendedores, Map<String, Producto> mapaProductos) throws IOException {
         List<Vendedor> vendedoresOrdenados = mapaVendedores.values().stream()
             .sorted(Comparator.comparingDouble(v -> -v.ventasTotales))
             .collect(Collectors.toList());
-        try (PrintWriter writer = new PrintWriter("reporte_vendedores.csv")) {
+        try (PrintWriter writer = new PrintWriter("reporte_vendedores.csv", StandardCharsets.UTF_8)) {
             for (Vendedor v : vendedoresOrdenados) {
-                writer.printf("%s %s;%.2f\n", v.nombres, v.apellidos, v.ventasTotales);
+                writer.printf("%s %s;%.2f%n", v.nombres, v.apellidos, v.ventasTotales);
             }
         }
         List<Producto> productosOrdenados = mapaProductos.values().stream()
             .sorted(Comparator.comparingInt(p -> -p.cantidadVendida))
             .collect(Collectors.toList());
-        try (PrintWriter writer = new PrintWriter("reporte_productos.csv")) {
+        try (PrintWriter writer = new PrintWriter("reporte_productos.csv", StandardCharsets.UTF_8)) {
             for (Producto p : productosOrdenados) {
-                writer.printf("%s;%.2f\n", p.nombre, p.precio);
+                writer.printf("%s;%.2f%n", p.nombre, p.precio);
             }
         }
     }
